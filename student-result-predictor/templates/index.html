@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Result Predictor</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 520px; margin: 40px auto; padding: 16px; background: #f1f5f9; color: #172033; }
+    .card { background: white; padding: 26px; border-radius: 14px; box-shadow: 0 8px 24px #00000012; }
+    label { display: block; margin-top: 14px; font-weight: 600; }
+    input, button { box-sizing: border-box; width: 100%; padding: 12px; margin-top: 7px; border: 1px solid #cbd5e1; border-radius: 7px; }
+    button { background: #2563eb; color: white; border: 0; cursor: pointer; margin-top: 20px; font-weight: 700; }
+    .result { padding: 12px; background: #e0f2fe; border-radius: 8px; }
+    .error { color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Student Result Predictor</h1>
+    <p>Enter the student's details to predict a sample result.</p>
+    <form method="POST">
+      <label for="study_hours">Study Hours (0–24)</label>
+      <input id="study_hours" type="number" name="study_hours" min="0" max="24" step="0.5" required>
+      <label for="attendance">Attendance (%)</label>
+      <input id="attendance" type="number" name="attendance" min="0" max="100" step="0.1" required>
+      <label for="internal_marks">Internal Marks (0–100)</label>
+      <input id="internal_marks" type="number" name="internal_marks" min="0" max="100" step="0.5" required>
+      <button type="submit">Predict Result</button>
+    </form>
+    {% if prediction %}<h2 class="result">Predicted Result: {{ prediction }}</h2>{% endif %}
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <p><strong>Model Version: {{ version }}</strong></p>
+  </main>
+</body>
+</html>
